@@ -7,27 +7,28 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      // TODO: Include the rest of the fields of the Restaurants table
       name: {
-        allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       address: {
-        allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      postalcode: {
-        allowNull: false,
-        type: Sequelize.STRING
+      postalCode: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       url: {
         type: Sequelize.STRING
       },
       shippingCosts: {
-        allowNull: false,
         type: Sequelize.DOUBLE,
+        allowNull: false,
         defaultValue: 0.0
       },
       averageServiceMinutes: {
@@ -46,9 +47,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       status: {
-        allowNull: false,
         type: Sequelize.STRING,
-        defaultValue: 'offline'
+        allowNull: false,
+        defaultValue: 'offline' // Valor por defecto como cadena de texto
       },
       restaurantCategoryId: {
         allowNull: false,
@@ -56,7 +57,9 @@ module.exports = {
         references: {
           model: { tableName: 'RestaurantCategories' },
           key: 'id'
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       userId: {
         allowNull: false,
@@ -64,7 +67,9 @@ module.exports = {
         references: {
           model: { tableName: 'Users' },
           key: 'id'
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,

@@ -27,11 +27,11 @@ const loadModel = (sequelize, DataTypes) => {
     }
   }
   Restaurant.init({
+    // TODO: Include the rest of the properties of the Restaurant model
     name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    description: DataTypes.TEXT,
     address: {
       type: DataTypes.STRING,
       allowNull: false
@@ -41,17 +41,25 @@ const loadModel = (sequelize, DataTypes) => {
       allowNull: false
     },
     url: DataTypes.STRING,
+    email: DataTypes.STRING,
+    phone: DataTypes.STRING,
+    logo: DataTypes.STRING,
+    heroImage: DataTypes.STRING,
+    // Campo de texto largo
+    description: DataTypes.TEXT,
+
+    // Campos numericos
     shippingCosts: {
       type: DataTypes.DOUBLE,
       allowNull: false,
       defaultValue: 0.0
     },
     averageServiceMinutes: DataTypes.DOUBLE,
-    email: DataTypes.STRING,
-    phone: DataTypes.STRING,
-    logo: DataTypes.STRING,
-    heroImage: DataTypes.STRING,
-    status: DataTypes.STRING,
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: 'offline'
+    },
     restaurantCategoryId: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -60,7 +68,6 @@ const loadModel = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     }
-
   }, {
     sequelize,
     modelName: 'Restaurant'
